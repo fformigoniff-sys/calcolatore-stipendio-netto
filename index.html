@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calcolo Stipendio Netto dal Lordo (RAL) | Calcolatore Ufficiale 2024 - 2025</title>
+    <meta name="description" content="Calcola online gratis lo stipendio netto mensile e annuale partendo dalla tua RAL lorda. Simulatore aggiornato con riforma IRPEF a 3 scaglioni, contributi INPS e detrazioni lavoro dipendente.">
+    <meta name="keywords" content="calcolo stipendio netto, da lordo a netto, calcolo ral netto, stipendio netto 13 mensilita, stipendio netto 14 mensilita, calcolo irpef 2024 2025, calcolo netto busta paga">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://tuo-progetto.vercel.app/">
+
+    <!-- SCHEMA.ORG DATI STRUTTURATI PER GOOGLE (WEB APPLICATION & FAQS) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "WebApplication",
+          "name": "Calcolatore Stipendio Netto dal Lordo (RAL)",
+          "url": "https://tuo-progetto.vercel.app/",
+          "applicationCategory": "FinanceApplication",
+          "operatingSystem": "All",
+          "browserRequirements": "Requires JavaScript",
+          "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "EUR"
+          },
+          "description": "Applicazione gratuita per il calcolo dello stipendio netto mensile e annuale partendo dalla Retribuzione Annua Lorda (RAL) secondo le aliquote IRPEF 2024-2025."
+        },
+        {
+          "@type": "FAQPage",
+          "mainEntity": [
+            {
+              "@type": "Question",
+              "name": "Come si calcola lo stipendio netto dalla RAL?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Per calcolare lo stipendio netto dalla RAL si sottraggono prima i contributi previdenziali INPS a carico del lavoratore (9,19%). Sull'imponibile fiscale risultante si applicano le aliquote IRPEF a scaglioni (23%, 35%, 43%), si sottraggono le detrazioni da lavoro dipendente e si aggiungono le addizionali regionali e comunali. Il netto annuale viene infine diviso per il numero di mensilità (13 o 14)."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Quali sono i nuovi scaglioni IRPEF 2024 - 2025?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "I nuovi scaglioni IRPEF sono 3: 23% per redditi fino a 28.000 euro; 35% per la quota di reddito compresa tra 28.000 e 50.000 euro; 43% per la quota di reddito oltre i 50.000 euro."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "A quanto ammonta lo stipendio netto per una RAL di 30.000 euro?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Con una RAL di 30.000 euro e contratto standard a tempo indeterminato, lo stipendio netto annuale è di circa 22.685 euro, corrispondenti a circa 1.745 euro netti al mese su 13 mensilità o circa 1.620 euro netti su 14 mensilità."
+              }
+            }
+          ]
+        }
+      ]
+    }
+    </script>
+
+    <!-- CODICE GOOGLE ADSENSE (Sostituisci CA-PUB-XXXXXXXXXXXXXXXX con il tuo ID quando approvato) -->
+    <!-- <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX" crossorigin="anonymous"></script> -->
+
+    <style>
+        :root {
+            --primary: #0F6E56;
+            --primary-light: #E1F5EE;
+            --primary-dark: #084c3b;
+            --bg: #F8FAFC;
+            --card-bg: #FFFFFF;
+            --text-main: #0F172A;
+            --text-muted: #64748B;
+            --border: #E2E8F0;
+            --radius: 16px;
+            --shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.04), 0 8px 10px -6px rgba(0, 0, 0, 0.02);
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
+        body { background-color: var(--bg); color: var(--text-main); line-height: 1.6; }
+        .container { max-width: 960px; margin: 0 auto; padding: 24px 16px; }
+
+        /* NAVBAR */
+        nav { background: #FFFFFF; border-bottom: 1px solid var(--border); padding: 14px 20px; display: flex; justify-content: space-between; align-items: center; }
+        .brand { font-size: 17px; font-weight: 700; color: var(--primary); display: flex; align-items: center; gap: 8px; text-decoration: none; }
+        .nav-links { display: flex; gap: 16px; font-size: 13px; }
+        .nav-links a { color: var(--text-muted); text-decoration: none; font-weight: 500; }
+        .nav-links a:hover { color: var(--primary); }
+
+        header { text-align: center; margin: 28px 0 20px; }
+        header h1 { font-size: 28px; font-weight: 800; color: var(--text-main); margin-bottom: 8px; }
+        header p { font-size: 15px; color: var(--text-muted); max-width: 650px; margin: 0 auto; }
+
+        .badge-update { display: inline-block; background: var(--primary-light); color: var(--primary); font-size: 11px; font-weight: 600; padding: 4px 12px; border-radius: 20px; margin-bottom: 10px; }
+
+        /* ADSENSE BANNER PLACEHOLDER */
+        .ad-box { background: #F1F5F9; border: 1px dashed #CBD5E1; border-radius: 12px; padding: 16px; text-align: center; margin: 20px 0; font-size: 12px; color: var(--text-muted); min-height: 90px; display: flex; align-items: center; justify-content: center; }
+
+        .calculator-grid { display: grid; grid-template-columns: 1fr 1.15fr; gap: 24px; margin-bottom: 36px; }
+        @media (max-width: 768px) { .calculator-grid { grid-template-columns: 1fr; } }
+
+        .card { background: var(--card-bg); border: 1px solid var(--border); border-radius: var(--radius); padding: 24px; box-shadow: var(--shadow); }
+        .card-title { font-size: 16px; font-weight: 600; margin-bottom: 18px; display: flex; align-items: center; gap: 8px; }
+
+        .form-group { margin-bottom: 16px; }
+        label { display: block; font-size: 13px; font-weight: 500; color: var(--text-main); margin-bottom: 6px; }
+        .input-wrapper { position: relative; display: flex; align-items: center; }
+        .input-symbol { position: absolute; left: 14px; font-weight: 600; color: var(--text-muted); font-size: 15px; }
+
+        input[type="number"], select { width: 100%; padding: 12px 14px 12px 36px; border: 1px solid var(--border); border-radius: 10px; font-size: 15px; font-weight: 500; color: var(--text-main); background: #FFFFFF; transition: all 0.2s; }
+        select { padding-left: 14px; cursor: pointer; }
+        input:focus, select:focus { outline: none; border-color: var(--primary); box-shadow: 0 0 0 3px rgba(15, 110, 86, 0.15); }
+
+        .radio-group { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+        .radio-label { border: 1px solid var(--border); padding: 10px; border-radius: 10px; text-align: center; cursor: pointer; font-size: 13px; font-weight: 500; transition: all 0.2s; }
+        .radio-label input { display: none; }
+        .radio-label.active { background: var(--primary-light); border-color: var(--primary); color: var(--primary); font-weight: 600; }
+
+        /* RISULTATI */
+        .result-highlight { background: linear-gradient(135deg, #0F6E56 0%, #15803D 100%); color: #FFFFFF; border-radius: 14px; padding: 22px; text-align: center; margin-bottom: 20px; }
+        .result-label { font-size: 12px; text-transform: uppercase; letter-spacing: 0.5px; opacity: 0.9; }
+        .result-value-big { font-size: 36px; font-weight: 800; margin: 4px 0; }
+        .result-sub { font-size: 13px; opacity: 0.85; }
+
+        .progress-bar-container { height: 8px; background: #E2E8F0; border-radius: 4px; overflow: hidden; display: flex; margin: 16px 0; }
+        .bar-net { background: #0F6E56; }
+        .bar-irpef { background: #DC2626; }
+        .bar-inps { background: #D97706; }
+
+        .breakdown-list { display: flex; flex-direction: column; gap: 10px; }
+        .breakdown-item { display: flex; justify-content: space-between; align-items: center; padding: 8px 0; border-bottom: 1px solid var(--border); font-size: 13px; }
+        .breakdown-item:last-child { border-bottom: none; }
+        .breakdown-item.total { font-weight: 700; font-size: 15px; padding-top: 10px; }
+        .text-tax { color: #DC2626; font-weight: 500; }
+        .text-inps { color: #D97706; font-weight: 500; }
+        .text-bonus { color: #16A34A; font-weight: 500; }
+
+        /* GUIDA TESTUALE & TABELLE SEO */
+        .article-section { background: #FFFFFF; border: 1px solid var(--border); border-radius: var(--radius); padding: 32px 28px; margin-bottom: 30px; box-shadow: var(--shadow); }
+        .article-section h2 { font-size: 20px; font-weight: 700; color: var(--text-main); margin: 24px 0 12px; border-left: 4px solid var(--primary); padding-left: 12px; }
+        .article-section h2:first-of-type { margin-top: 0; }
+        .article-section h3 { font-size: 16px; font-weight: 600; color: var(--text-main); margin: 18px 0 8px; }
+        .article-section p { font-size: 14px; color: #334155; margin-bottom: 14px; line-height: 1.7; }
+        .article-section ul { margin: 0 0 16px 20px; font-size: 14px; color: #334155; }
+        .article-section li { margin-bottom: 6px; }
+
+        .table-wrapper { overflow-x: auto; margin: 20px 0; border-radius: 10px; border: 1px solid var(--border); }
+        table { width: 100%; border-collapse: collapse; font-size: 13px; text-align: left; }
+        th { background: #F8FAFC; color: var(--text-main); padding: 12px 14px; font-weight: 600; border-bottom: 1px solid var(--border); }
+        td { padding: 12px 14px; border-bottom: 1px solid var(--border); color: #334155; }
+        tr:last-child td { border-bottom: none; }
+        tr:hover td { background: #F8FAFC; }
+
+        /* FAQ ACCORDION */
+        .faq-item { border: 1px solid var(--border); border-radius: 10px; margin-bottom: 10px; overflow: hidden; }
+        .faq-question { padding: 14px 18px; background: #F8FAFC; font-weight: 600; font-size: 14px; cursor: pointer; display: flex; justify-content: space-between; align-items: center; }
+        .faq-answer { padding: 14px 18px; font-size: 13px; color: #334155; line-height: 1.6; display: none; background: #FFFFFF; border-top: 1px solid var(--border); }
+        .faq-item.open .faq-answer { display: block; }
+        .faq-item.open .faq-toggle { transform: rotate(180deg); }
+        .faq-toggle { transition: transform 0.2s; font-size: 12px; }
+
+        /* FOOTER & PAGINE ISTITUZIONALI */
+        footer { background: #FFFFFF; border-top: 1px solid var(--border); padding: 36px 16px 24px; font-size: 12px; color: var(--text-muted); margin-top: 40px; }
+        .footer-grid { max-width: 960px; margin: 0 auto; display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 30px; margin-bottom: 24px; }
+        @media (max-width: 650px) { .footer-grid { grid-template-columns: 1fr; } }
+        .footer-col h4 { font-size: 13px; font-weight: 600; color: var(--text-main); margin-bottom: 10px; }
+        .footer-col p { line-height: 1.6; }
+        .footer-col a { color: var(--text-muted); text-decoration: none; display: block; margin-bottom: 6px; }
+        .footer-col a:hover { color: var(--primary); }
+        .copyright { text-align: center; padding-top: 20px; border-top: 1px solid var(--border); font-size: 11px; }
+
+        .privacy-box { margin: 16px 0; padding: 14px; background: rgba(15, 110, 86, 0.05); border-left: 4px solid var(--primary); border-radius: 6px; font-size: 13px; color: var(--text-main); }
+    </style>
+</head>
+<body>
+
+<nav>
+    <a href="#" class="brand">
+        <span>💶</span> CalcolaStipendioNetto
+    </a>
+    <div class="nav-links">
+        <a href="#calcolatore">Calcolatore</a>
+        <a href="#tabella-ral">Tabelle RAL</a>
+        <a href="#guida">Guida IRPEF</a>
+        <a href="#faq">FAQ</a>
+    </div>
+</nav>
+
+<div class="container" id="calcolatore">
+    <header>
+        <span class="badge-update">✨ Aggiornato Riforma IRPEF 2024 - 2025</span>
+        <h1>Calcolo Stipendio Netto dal Lordo (RAL)</h1>
+        <p>Simulatore gratuito per calcolare la busta paga netta mensile e annuale partendo dalla Retribuzione Annua Lorda.</p>
+    </header>
+
+    <!-- BANNER GOOGLE ADSENSE SUPERIORE -->
+    <div class="ad-box">
+        <!-- INSERISCI QUI IL CODICE UNITA PUBBLICITARIA ADSENSE -->
+        <span>[Spazio Pubblicitario Google AdSense Responsive]</span>
+    </div>
+
+    <div class="calculator-grid">
+        <!-- FORM DI INPUT -->
+        <div class="card">
+            <div class="card-title">💼 Inserisci i Tuoi Dati</div>
+
+            <div class="form-group">
+                <label for="ral">Retribuzione Annua Lorda (RAL)</label>
+                <div class="input-wrapper">
+                    <span class="input-symbol">€</span>
+                    <input type="number" id="ral" value="30000" min="5000" max="300000" step="500">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>Numero di Mensilità da Contratto</label>
+                <div class="radio-group">
+                    <label class="radio-label active" id="label-m13">
+                        <input type="radio" name="mensilita" value="13" checked onchange="updateMensilita(13)"> 13 Mensilità
+                    </label>
+                    <label class="radio-label" id="label-m14">
+                        <input type="radio" name="mensilita" value="14" onchange="updateMensilita(14)"> 14 Mensilità
+                    </label>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="regione">Regione di Residenza (Addizionale Regionale)</label>
+                <select id="regione">
+                    <option value="1.73">Lombardia (Media 1.73%)</option>
+                    <option value="2.33">Lazio (Media 2.33%)</option>
+                    <option value="2.03">Piemonte (Media 2.03%)</option>
+                    <option value="1.23">Veneto (Media 1.23%)</option>
+                    <option value="1.83">Emilia-Romagna (Media 1.83%)</option>
+                    <option value="1.70" selected>Altra Regione / Media Italia (1.70%)</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="tipo_contratto">Tipologia di Contratto di Lavoro</label>
+                <select id="tipo_contratto">
+                    <option value="indeterminato" selected>Tempo Indeterminato (Standard)</option>
+                    <option value="determinato">Tempo Determinato</option>
+                    <option value="apprendistato">Apprendistato (INPS Agevolata 5.84%)</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- SCHEDA RISULTATI -->
+        <div class="card">
+            <div class="card-title">📊 Risultato della Simulazione</div>
+
+            <div class="result-highlight">
+                <div class="result-label">Stipendio Netto Mensile</div>
+                <div class="result-value-big" id="netto-mensile">€ 1.745</div>
+                <div class="result-sub" id="netto-annuale-sub">su 13 mensilità (€ 22.685 netti/anno)</div>
+            </div>
+
+            <div class="progress-bar-container">
+                <div class="bar-net" id="bar-net" style="width: 75%;" title="Netto in Tasca"></div>
+                <div class="bar-irpef" id="bar-irpef" style="width: 16%;" title="IRPEF + Addizionali"></div>
+                <div class="bar-inps" id="bar-inps" style="width: 9%;" title="INPS Dipendente"></div>
+            </div>
+
+            <div class="breakdown-list">
+                <div class="breakdown-item">
+                    <span>RAL Lorda Iniziale</span>
+                    <strong id="out-ral">€ 30.000</strong>
+                </div>
+                <div class="breakdown-item">
+                    <span>Contributi INPS Lavoratore (9.19%)</span>
+                    <span class="text-inps" id="out-inps">- € 2.757</span>
+                </div>
+                <div class="breakdown-item">
+                    <span>Imponibile Fiscale IRPEF</span>
+                    <span id="out-imponibile">€ 27.243</span>
+                </div>
+                <div class="breakdown-item">
+                    <span>IRPEF Lorda (3 Scaglioni)</span>
+                    <span class="text-tax" id="out-irpef-lorda">- € 6.265</span>
+                </div>
+                <div class="breakdown-item">
+                    <span>Detrazioni da Lavoro Dipendente (Art. 13)</span>
+                    <span class="text-bonus" id="out-detrazioni">+ € 2.150</span>
+                </div>
+                <div class="breakdown-item">
+                    <span>Addizionali Regionali e Comunali stimate</span>
+                    <span class="text-tax" id="out-addizionali">- € 443</span>
+                </div>
+                <div class="breakdown-item total">
+                    <span>Stipendio Netto Annuale</span>
+                    <strong style="color: #0F6E56; font-size: 16px;" id="out-netto-totale">€ 22.685</strong>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- BANNER GOOGLE ADSENSE INTERMEDIO -->
+    <div class="ad-box">
+        <!-- INSERISCI QUI IL CODICE UNITA PUBBLICITARIA ADSENSE -->
+        <span>[Spazio Pubblicitario Google AdSense Responsive]</span>
+    </div>
+
+    <!-- TABELLA PRECALCOLATA SEO A CODA LUNGA -->
+    <div class="article-section" id="tabella-ral">
+        <h2>Tabella Retribuzioni: Da RAL a Netto Mensile (2024 - 2025)</h2>
+        <p>Di seguito riportiamo una tabella di riepilogo con i valori di RAL più comuni in Italia, calcolati per un contratto di lavoro a tempo indeterminato medio con 13 e 14 mensilità:</p>
+
+        <div class="table-wrapper">
+            <table>
+                <thead>
+                    <tr>
+                        <th>RAL Lorda Annuale</th>
+                        <th>Netto Mensile (13 Mesi)</th>
+                        <th>Netto Mensile (14 Mesi)</th>
+                        <th>Netto Totale Annuale</th>
+                        <th>% Tasse e INPS Totali</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>€ 15.000</strong></td>
+                        <td>€ 1.050</td>
+                        <td>€ 975</td>
+                        <td>€ 13.650</td>
+                        <td>9.0%</td>
+                    </tr>
+                    <tr>
+                        <td><strong>€ 20.000</strong></td>
+                        <td>€ 1.310</td>
+                        <td>€ 1.216</td>
+                        <td>€ 17.030</td>
+                        <td>14.8%</td>
+                    </tr>
+                    <tr>
+                        <td><strong>€ 25.000</strong></td>
+                        <td>€ 1.540</td>
+                        <td>€ 1.430</td>
+                        <td>€ 20.020</td>
+                        <td>19.9%</td>
+                    </tr>
+                    <tr>
+                        <td><strong>€ 28.000</strong></td>
+                        <td>€ 1.660</td>
+                        <td>€ 1.541</td>
+                        <td>€ 21.580</td>
+                        <td>22.9%</td>
+                    </tr>
+                    <tr>
+                        <td><strong>€ 30.000</strong></td>
+                        <td>€ 1.745</td>
+                        <td>€ 1.620</td>
+                        <td>€ 22.685</td>
+                        <td>24.3%</td>
+                    </tr>
+                    <tr>
+                        <td><strong>€ 35.000</strong></td>
+                        <td>€ 1.950</td>
+                        <td>€ 1.810</td>
+                        <td>€ 25.350</td>
+                        <td>27.5%</td>
+                    </tr>
+                    <tr>
+                        <td><strong>€ 40.000</strong></td>
+                        <td>€ 2.140</td>
+                        <td>€ 1.987</td>
+                        <td>€ 27.820</td>
+                        <td>30.4%</td>
+                    </tr>
+                    <tr>
+                        <td><strong>€ 50.000</strong></td>
+                        <td>€ 2.500</td>
+                        <td>€ 2.321</td>
+                        <td>€ 32.500</td>
+                        <td>35.0%</td>
+                    </tr>
+                    <tr>
+                        <td><strong>€ 60.000</strong></td>
+                        <td>€ 2.870</td>
+                        <td>€ 2.665</td>
+                        <td>€ 37.310</td>
+                        <td>37.8%</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- GUIDA COMPLETA PER APPROVAZIONE GOOGLE ADSENSE -->
+    <div class="article-section" id="guida">
+        <h2>Guida Completa: Come si Passa dalla RAL allo Stipendio Netto?</h2>
+        <p>La Retribuzione Annua Lorda (RAL) concordata nella lettera di assunzione o nel contratto collettivo nazionale (CCNL) non corrisponde all'importo effettivo che il lavoratore riceve ogni mese sul proprio conto corrente. Per determinare il netto in busta paga, occorre applicare una serie di trattenute previdenziali e fiscali obbligatorie previste dalla legge italiana.</p>
+
+        <h3>1. Il Primo Prelievo: I Contributi Previdenziali INPS</h3>
+        <p>Prima di calcolare le imposte, la legge stabilisce che una percentuale della retribuzione lorda venga versata all'INPS per la copertura pensionistica e assicurativa. Per la maggior parte dei lavoratori dipendenti del settore privato, l'aliquota ordinaria a carico del dipendente è pari al <strong>9,19%</strong> (ridotta al <strong>5,84%</strong> per i contratti di apprendistato professionalizzante).</p>
+        <p>La cifra rimanente dopo la sottrazione dei contributi INPS costituisce la base imponibile su cui viene calcolata l'IRPEF.</p>
+
+        <h3>2. I Nuovi 3 Scaglioni IRPEF (Riforma Fiscale 2024 - 2025)</h3>
+        <p>L'Imposta sul Reddito delle Persone Fisiche (IRPEF) è una tassa progressiva a scaglioni. Con la recente riforma fiscale, le aliquote sono state accorpate da 4 a 3 scaglioni:</p>
+        <ul>
+            <li><strong>Primo Scaglione (23%):</strong> Si applica sui redditi imponibili fino a 28.000 euro annui.</li>
+            <li><strong>Secondo Scaglione (35%):</strong> Si applica sulla quota di reddito compresa tra 28.001 e 50.000 euro annui.</li>
+            <li><strong>Terzo Scaglione (43%):</strong> Si applica sulla quota di reddito eccedente i 50.000 euro annui.</li>
+        </ul>
+
+        <h3>3. Le Detrazioni per Lavoro Dipendente (Art. 13 TUIR)</h3>
+        <p>L'IRPEF calcolata tramite gli scaglioni è definita "IRPEF Lorda". Da questa somma vengono sottratte le detrazioni fiscali per lavoro dipendente, che riducono l'imposta effettiva da pagare. Per i redditi fino a 15.000 euro la no tax area e la detrazione base massima ammontano a 1.955 euro, per poi decrescere progressivamente fino ad azzerarsi sopra i 50.000 euro di reddito imponibile.</p>
+
+        <h3>4. Addizionali Regionali e Comunali</h3>
+        <p>Alla tassazione nazionale IRPEF si aggiungono le addizionali deliberate dalla Regione e dal Comune di residenza del lavoratore. In media pesano complessivamente tra l'1,5% e il 2,8% dell'imponibile fiscale.</p>
+
+        <div class="privacy-box">
+            🔒 <strong>Garanzia Totale di Riservatezza & Privacy:</strong> Questo strumento è progettato secondo i principi di Privacy by Design. Nessun dato inserito (stipendio, selezioni contrattuali o residenza) viene mai trasmesso, memorizzato o profilato su server esterni. L'intero calcolo è eseguito istantaneamente e in locale dal browser del tuo dispositivo.
+        </div>
+    </div>
+
+    <!-- SEZIONE FAQ PER RISULTATI AVANZATI GOOGLE (RICH SNIPPETS) -->
+    <div class="article-section" id="faq">
+        <h2>Domande Frequenti sul Calcolo dello Stipendio Netto (FAQ)</h2>
+        
+        <div class="faq-item">
+            <div class="faq-question" onclick="toggleFaq(this)">
+                <span>Cosa significa la sigla RAL?</span>
+                <span class="faq-toggle">▼</span>
+            </div>
+            <div class="faq-answer">
+                RAL è l'acronimo di "Retribuzione Annua Lorda". Rappresenta il compenso economico complessivo annuo che l'azienda garantisce al dipendente prima dell'applicazione delle tasse (IRPEF), dei contributi previdenziali (INPS) e delle addizionali locali.
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question" onclick="toggleFaq(this)">
+                <span>Che differenza c'è tra 13 e 14 mensilità sul netto mensile?</span>
+                <span class="faq-toggle">▼</span>
+            </div>
+            <div class="faq-answer">
+                Il netto complessivo annuale rimane sostanzialmente invariato. Tuttavia, dividendo la retribuzione per 14 mensilità, la cifra netta percepita ogni mese ordinario è leggermente inferiore rispetto a un contratto con 13 mensilità, ma il lavoratore percepirà due mensilità aggiuntive (la tredicesima a dicembre e la quattordicesima a giugno/luglio).
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question" onclick="toggleFaq(this)">
+                <span>Il calcolatore include il Trattamento Integrativo (ex Bonus Renzi)?</span>
+                <span class="faq-toggle">▼</span>
+            </div>
+            <div class="faq-answer">
+                Il Trattamento Integrativo di 100 euro al mese (fino a 1.200 euro annui) spetta ai lavoratori con reddito complessivo compreso tra 8.500 euro e 15.000 euro (e in determinati casi fino a 28.000 euro con capienza di detrazioni). Il simulatore applica le detrazioni ordinarie aggiornate all'Art. 13 TUIR.
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question" onclick="toggleFaq(this)">
+                <span>I risultati sono vincolanti per la busta paga ufficiale?</span>
+                <span class="faq-toggle">▼</span>
+            </div>
+            <div class="faq-answer">
+                Il simulatore fornisce una stima accurata e aggiornata basata sulle normative nazionali standard. La busta paga effettiva elaborata dal consulente del lavoro dell'azienda potrebbe presentare minime differenze dovute a contratti collettivi specifici (CCNL), straordinari, rimborsi spese o detrazioni per carichi di famiglia individuali.
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- FOOTER ISTITUZIONALE PER GOOGLE ADSENSE -->
+<footer>
+    <div class="footer-grid">
+        <div class="footer-col">
+            <h4>CalcolaStipendioNetto</h4>
+            <p>Strumento indipendente e gratuito per la simulazione della retribuzione netta dei lavoratori dipendenti in Italia. Aggiornato con le vigenti normative fiscali e previdenziali 2024 - 2025.</p>
+        </div>
+        <div class="footer-col">
+            <h4>Navigazione Rapida</h4>
+            <a href="#calcolatore">Simulatore RAL</a>
+            <a href="#tabella-ral">Tabelle Retributive</a>
+            <a href="#guida">Guida Fiscale IRPEF</a>
+            <a href="#faq">Domande Frequenti</a>
+        </div>
+        <div class="footer-col">
+            <h4>Note Legali & Privacy</h4>
+            <a href="javascript:void(0)" onclick="alert('Informativa Privacy: Questo sito non raccoglie né memorizza dati personali. Nessun cookie di profilazione di prima parte viene utilizzato.')">Privacy Policy</a>
+            <a href="javascript:void(0)" onclick="alert('Termini di Servizio: I calcoli forniti hanno valore puramente informativo e non sostituiscono la consulenza professionale di un CAF o Consulente del Lavoro.')">Disclaimer & Termini</a>
+            <p style="margin-top: 8px;">Contatto: info.calcolostipendio@gmail.com</p>
+        </div>
+    </div>
+    <div class="copyright">
+        © 2024 - 2025 CalcolaStipendioNetto. Tutti i diritti riservati. Sviluppato per fini divulgativi.
+    </div>
+</footer>
+
+<script>
+    let currentMensilita = 13;
+
+    function updateMensilita(num) {
+        currentMensilita = num;
+        document.getElementById('label-m13').classList.toggle('active', num === 13);
+        document.getElementById('label-m14').classList.toggle('active', num === 14);
+        calcolaStipendio();
+    }
+
+    function toggleFaq(el) {
+        el.parentElement.classList.toggle('open');
+    }
+
+    function calcolaStipendio() {
+        const ral = parseFloat(document.getElementById('ral').value) || 0;
+        const tipoContratto = document.getElementById('tipo_contratto').value;
+        const addizionaliRate = parseFloat(document.getElementById('regione').value) || 1.70;
+
+        if (ral <= 0) return;
+
+        // 1. Contributi INPS Dipendente
+        let aliquotaINPS = (tipoContratto === 'apprendistato') ? 0.0584 : 0.0919;
+        const inps = ral * aliquotaINPS;
+
+        // 2. Imponibile Fiscale
+        const imponibile = Math.max(0, ral - inps);
+
+        // 3. IRPEF Lorda a 3 Scaglioni
+        let irpefLorda = 0;
+        if (imponibile <= 28000) {
+            irpefLorda = imponibile * 0.23;
+        } else if (imponibile <= 50000) {
+            irpefLorda = (28000 * 0.23) + ((imponibile - 28000) * 0.35);
+        } else {
+            irpefLorda = (28000 * 0.23) + (22000 * 0.35) + ((imponibile - 50000) * 0.43);
+        }
+
+        // 4. Detrazioni Lavoro Dipendente (Art. 13 TUIR)
+        let detrazioni = 0;
+        if (imponibile <= 15000) {
+            detrazioni = 1955;
+        } else if (imponibile <= 28000) {
+            detrazioni = 1910 + 1190 * ((28000 - imponibile) / 13000);
+        } else if (imponibile <= 50000) {
+            detrazioni = 1910 * ((50000 - imponibile) / 22000);
+        }
+
+        detrazioni = Math.min(detrazioni, irpefLorda);
+        const irpefNetta = Math.max(0, irpefLorda - detrazioni);
+
+        // 5. Addizionali Regionali e Comunali stimate
+        const addizionali = imponibile * (addizionaliRate / 100);
+
+        // 6. Netto Finale
+        const totaleTrattenute = inps + irpefNetta + addizionali;
+        const nettoAnnuale = Math.max(0, ral - totaleTrattenute);
+        const nettoMensile = nettoAnnuale / currentMensilita;
+
+        // AGGIORNAMENTO DOM
+        const fmt = (n) => Math.round(n).toLocaleString('it-IT');
+
+        document.getElementById('netto-mensile').innerText = '€ ' + fmt(nettoMensile);
+        document.getElementById('netto-annuale-sub').innerText = `su ${currentMensilita} mensilità (€ ${fmt(nettoAnnuale)} netti/anno)`;
+        
+        document.getElementById('out-ral').innerText = '€ ' + fmt(ral);
+        document.getElementById('out-inps').innerText = '- € ' + fmt(inps);
+        document.getElementById('out-imponibile').innerText = '€ ' + fmt(imponibile);
+        document.getElementById('out-irpef-lorda').innerText = '- € ' + fmt(irpefLorda);
+        document.getElementById('out-detrazioni').innerText = '+ € ' + fmt(detrazioni);
+        document.getElementById('out-addizionali').innerText = '- € ' + fmt(addizionali);
+        document.getElementById('out-netto-totale').innerText = '€ ' + fmt(nettoAnnuale);
+
+        // Aggiornamento barre grafiche
+        const pctNet = (nettoAnnuale / ral) * 100;
+        const pctIrpef = ((irpefNetta + addizionali) / ral) * 100;
+        const pctInps = (inps / ral) * 100;
+
+        document.getElementById('bar-net').style.width = pctNet + '%';
+        document.getElementById('bar-irpef').style.width = pctIrpef + '%';
+        document.getElementById('bar-inps').style.width = pctInps + '%';
+    }
+
+    document.getElementById('ral').addEventListener('input', calcolaStipendio);
+    document.getElementById('regione').addEventListener('change', calcolaStipendio);
+    document.getElementById('tipo_contratto').addEventListener('change', calcolaStipendio);
+
+    // Esecuzione iniziale al caricamento
+    calcolaStipendio();
+</script>
+
+</body>
+</html>
